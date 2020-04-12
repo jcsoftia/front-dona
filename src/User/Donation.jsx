@@ -15,7 +15,7 @@ const Donation = (props) => {
     
     const getDonations = async () => {
       try {
-        const response = await sendRequest(`https://back-dona.herokuapp.com//donation/`, "GET", null, {
+        const response = await sendRequest(`https://back-dona.herokuapp.com/donation/`, "GET", null, {
           "auth-token": auth.token,
         });
         setLoadedDonations(response)
