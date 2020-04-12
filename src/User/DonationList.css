@@ -1,0 +1,26 @@
+/* .donation-list {
+  list-style: none;
+  margin: 1rem auto;
+  padding: 0;
+  width: 90%;
+  max-width: 40rem;
+} */
+.donation-list {
+  list-style: none;
+  padding: 0;
+  margin: 1rem auto;
+  max-width: 50rem;
+  display: grid;
+  justify-content: center;
+  grid-template-columns: 1fr;
+}
+@media (min-width: 768px) {
+  .donation-list {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+@media (min-width: 1024px) {
+  .donation-list {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+}

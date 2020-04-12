@@ -1,0 +1,53 @@
+.donation-item {
+  margin: 1rem 0;
+  /* margin: 1rem; */
+  width: calc(50% - 2rem);
+  min-width: 17.5rem;
+  place-self: center;
+}
+@media (min-width:480px) {
+  .donation-item{
+    margin: 1rem;
+  }
+}
+
+.donation-item__content {
+  padding: 0;
+}
+
+.donation-item__info {
+  padding: 1rem;
+  text-align: center;
+}
+
+.donation-item__info h2,
+.donation-item__info h3,
+.donation-item__info p {
+  margin: 0 0 0.5rem 0;
+  /* text-align: center; */
+}
+
+.donation-item__actions {
+  padding: 1rem;
+  text-align: center;
+  border-top: 1px solid #ccc;
+}
+
+.donation-item__modal-content {
+  padding: 0;
+}
+
+.donation-item__modal-actions {
+  text-align: right;
+}
+
+.donation-item__actions button,
+.donation-item__actions a {
+  margin: 0.5rem;
+}
+
+@media (min-width: 768px) {
+  .donation-item__image {
+    height: 20rem;
+  } 
+}

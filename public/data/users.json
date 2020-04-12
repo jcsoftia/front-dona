@@ -1,0 +1,86 @@
+[
+  {
+    "name": "Saul",
+    "dni": "12345678",
+    "cellphone": "999999999",
+    "location": {
+      "lat": -9.925524,
+      "lng": -78.042819
+    },
+    "products": [
+      {
+        "name": "product one",
+        "description": "any description",
+        "state": false
+      },
+      {
+        "name": "product two",
+        "description": "any description",
+        "state": true
+      }
+    ]
+  },
+  {
+    "name": "Claudia",
+    "dni": "12345678",
+    "cellphone": "999999999",
+    "location": {
+      "lat": -11.921537,
+      "lng": -75.316329
+    },
+    "products": [
+      {
+        "name": "product one",
+        "description": "any description",
+        "state": true
+      },
+      {
+        "name": "product two",
+        "description": "any description",
+        "state": true
+      }
+    ]
+  },
+  {
+    "name": "Fernando",
+    "dni": "12345678",
+    "cellphone": "999999999",
+    "location": {
+      "lat": -10.566540,
+      "lng": -76.810591
+    },
+    "products": [
+      {
+        "name": "product one",
+        "description": "any description",
+        "state": false
+      },
+      {
+        "name": "product two",
+        "description": "any description",
+        "state": false
+      }
+    ]
+  },
+  {
+    "name": "Jose",
+    "dni": "12345678",
+    "cellphone": "999999999",
+    "location": {
+      "lat": -4.250825,
+      "lng": -74.878192
+    },
+    "products": [
+      {
+        "name": "product one",
+        "description": "any description",
+        "state": true
+      },
+      {
+        "name": "product two",
+        "description": "any description",
+        "state": true
+      }
+    ]
+  }
+]
