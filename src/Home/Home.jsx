@@ -12,7 +12,7 @@ class Home extends Component {
 
   getUsers = async () => {
     try {
-      const response = await fetch('http://localhost:3001/users', {
+      const response = await fetch('https://back-dona.herokuapp.com//users', {
         headers: {
           'Content-Type': 'application/json',
           Accept: 'application/json'

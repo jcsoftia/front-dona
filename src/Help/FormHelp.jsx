@@ -53,7 +53,7 @@ const FormHelp = (props) => {
     // console.log(e);
     setSending(true);
     try {
-      const data = await fetch(`http://127.0.0.1:3001/users/`, {
+      const data = await fetch(`https://back-dona.herokuapp.com/users/`, {
         method: "POST",
         headers: {
           Accept: "application/json",

@@ -28,7 +28,7 @@ const DonationItem = (props) => {
     setShowConfirmModal(false);
     try {
       await sendRequest(
-        `http://localhost:3001/donation/`,
+        `https://back-dona.herokuapp.com/donation/`,
         "PUT",
         JSON.stringify({
           id: props.id,
