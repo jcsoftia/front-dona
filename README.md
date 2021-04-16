@@ -14,7 +14,7 @@ npm install
 ```
 
 Configuremos el entrono de desarrollo
-* Voy a dejar la key de la api de google solo para la revisión de @gndx en el archivo .env.example
+* Voy a dejar la key de la api de google solo para la revisión de @gndx
 
 ## Levantamos el proyecto
 
