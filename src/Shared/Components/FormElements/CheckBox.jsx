@@ -1,23 +1,25 @@
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
 
 import "./CheckBox.css";
 
-const CheckBox = ({ message, isChecked }) => {
+const CheckBox = ({ message, setChecked, checked }) => {
+
+  const [isChecked, setIsChecked] = useState(checked)
   const checkboxRef = useRef();
 
   const handleChecked = (e) => {
     const value = e.target.checked;
-    // setChecked(value);
-    isChecked(value)
+    setIsChecked(value);
+    setChecked(value)
   };
 
   return (
     <div className="checkbox">
-      <span className="checkbox__text" >{message||"Soy Donador"}</span>
+      <span className="checkbox__text" >{message||`¿Ha donado previamente?`}</span>
       <input
         ref={checkboxRef}
+        checked={isChecked}
         onChange={handleChecked}
-        // checked={checked}
         className="checkbox__input"
         type="checkbox"
         id="switch"

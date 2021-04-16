@@ -2,7 +2,6 @@ import React, { useState, useContext } from "react";
 
 import { AuthContext } from "../Shared/Context/auth_context";
 import { useHttpClient } from "../Shared/hooks/http-hook";
-import { useEffect } from "react";
 import Card from "../Shared/Components/UIElements/Card";
 import Button from "../Shared/Components/FormElements/Button";
 import Modal from "../Shared/Components/UIElements/Modal";
@@ -11,7 +10,7 @@ import LoadingSpinner from "../Shared/Components/UIElements/LoadingSpinner";
 import "./DonationItem.css";
 
 const DonationItem = (props) => {
-  const { isLoading, error, sendRequest, clearError } = useHttpClient();
+  const { isLoading, sendRequest } = useHttpClient();
   const auth = useContext(AuthContext);
 
   const [showConfirmModal, setShowConfirmModal] = useState(false);
@@ -51,20 +50,21 @@ const DonationItem = (props) => {
         footerContent={
           <>
             <Button inverse onClick={cancelDonatedHandler}>
-              CANCEL
+              CANCELAR
             </Button>
             <Button danger onClick={confirmDonatedHandler}>
-              DELETE
+              DE ACUERDO
             </Button>
           </>
         }
+        showButton={false}
+        buttonOn={false}
         className="modal_container-fixed"
       >
         <Card>
 
         <p>
-          Do you want to proceed and delete this place? Please note that it
-          can't be undone thereafter.
+          ¿Estas seguro que deseas marcar como donado este producto?
         </p>
         </Card>
       </Modal>
@@ -79,7 +79,7 @@ const DonationItem = (props) => {
                 Marcar como donado
               </Button>
             ) : (
-              <h2>Gracias por donar</h2>
+              <h2 style={{color:'green'}} >Gracias por donar</h2>
             )}
           </div>
         </Card>

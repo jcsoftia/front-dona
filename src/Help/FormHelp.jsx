@@ -8,6 +8,7 @@ import Card from "../Shared/Components/UIElements/Card";
 import CheckBox from "../Shared/Components/FormElements/CheckBox";
 import { useForm } from "../Shared/hooks/form-hook";
 import { VALIDATOR_REQUIRE } from "../Shared/Utils/Validators";
+import { CSSTransition } from "react-transition-group";
 
 const FormHelp = (props) => {
   const API_KEY = "AIzaSyAyJ821gbXvSLBEGuS0W51orqQq5YCZCLo";
@@ -16,12 +17,13 @@ const FormHelp = (props) => {
   const [success, setSuccess] = useState(false);
   const [error, setError] = useState(false);
   const [sending, setSending] = useState(false);
-  const [checked, setChecked] = useState(false);
+  const [isDonor, setIsDonor] = useState(false);
   const [footerMessage, setFooterMessage] = useState(
-    "we will be grateful to you"
+    "Pulse el botón bajar para seleccionar su ubicación exacta"
   );
+  const [buttonOn, setButtonOn] = useState(true);
 
-  const [formState, inputHandler, setFormData] = useForm(
+  const [formState, inputHandler] = useForm(
     {
       province: {
         value: "",
@@ -60,12 +62,12 @@ const FormHelp = (props) => {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          isDonor: checked,
+          isDonor: isDonor,
           dni: formState.inputs.dni.value,
           location: props.location,
-          province: !checked ? formState.inputs.province.value : "==",
-          name: !checked ? formState.inputs.name.value : "==",
-          cellphone: !checked ? formState.inputs.cellphone.value : "000000000",
+          province: !isDonor ? formState.inputs.province.value : "==",
+          name: !isDonor ? formState.inputs.name.value : "==",
+          cellphone: !isDonor ? formState.inputs.cellphone.value : "000000000",
           products: [
             {
               productName: formState.inputs.productName.value,
@@ -79,7 +81,7 @@ const FormHelp = (props) => {
         setSuccess(false);
         throw new Error(await data.text());
       } else {
-        setFooterMessage("Thank you so much");
+        setFooterMessage("Gracias por ayudar al necesitado");
         setTimeout(() => {
           history.push("/");
         }, 1000);
@@ -89,13 +91,8 @@ const FormHelp = (props) => {
     } catch (Error) {
       setError(true);
       setFooterMessage(`${Error}`);
-      console.log("error", Error);
     }
     setSending(false);
-  };
-
-  const isChecked = (e) => {
-    setChecked(e);
   };
 
   // Searh in Google Maps
@@ -113,6 +110,15 @@ const FormHelp = (props) => {
     }
   };
 
+  useEffect(() => {
+    isDonor?
+    setFooterMessage("Ud. puede ayudar al más necesitado")
+    :
+    setFooterMessage("Pulse el botón bajar para seleccionar su ubicación exacta")
+    return () => {
+      
+    };
+  }, [isDonor]);
 
   // Changing the pin in the map
   useEffect(() => {
@@ -124,7 +130,6 @@ const FormHelp = (props) => {
               formState.inputs.province.value === inputProvince.current.value
             ) {
               const geolocation = await searchInMaps();
-              console.log("geolocation", geolocation);
               if (geolocation) {
                 if (geolocation.results.length > 0) {
                   props.handleLocation(
@@ -133,7 +138,7 @@ const FormHelp = (props) => {
                   );
                 }
               } else {
-                console.log("cant load gmaps");
+                // console.log("cant load gmaps");
                 setError(true);
               }
             }
@@ -151,35 +156,47 @@ const FormHelp = (props) => {
   );
 
   return (
+    <CSSTransition
+        in={true}
+        mountOnEnter
+        unmountOnExit
+        appear={true}
+        timeout={800}
+        classNames="fade"
+      >
+
     <Modal
       show={loaded}
-      header={<CheckBox isChecked={isChecked} />}
+      header={<CheckBox setChecked={setIsDonor} checked={isDonor}/>}
       onCancel={false}
       footer={footerMessage}
       className="modal_container-start"
       success={success}
       error={error}
-      hideButton={true}
+      buttonOn={buttonOn}
+      setButtonOn={setButtonOn}
+      showButton={!isDonor}
+      footerRightMessage={"Gracias"}
       backdrop={!formState.inputs.province.value}
     >
-      <Card className="d-flex">
-        {!checked && (
+      <Card className="d-flex" style={{borderRadius:0}}>
+        {!isDonor && (
           <Input
             element="input"
             id="province"
             ref={inputProvince}
-            label="State / Province"
+            label="Distrito / Provincia / Departamento / Pais"
             name="province"
             value={formState.inputs.province.value}
             onInput={inputHandler}
             validators={[]}
           />
         )}
-        {!checked && (
+        {!isDonor && (
           <Input
             element="input"
             id="name"
-            label="Full Name"
+            label="Nombre o nickname del donante"
             name="name"
             onInput={inputHandler}
             validators={[VALIDATOR_REQUIRE()]}
@@ -188,17 +205,17 @@ const FormHelp = (props) => {
         <Input
           element="input"
           id="dni"
-          label="DNI"
-          className={!checked && "dm-6"}
+          label="DNI/CE/Pasaporte"
+          className={!isDonor && "dm-6"}
           name="dni"
           onInput={inputHandler}
           validators={[]}
         />
-        {!checked && (
+        {!isDonor && (
           <Input
             element="input"
             id="cellphone"
-            label="cellphone"
+            label="Nro celular"
             type="number"
             name="cellphone"
             className="dm-6"
@@ -209,7 +226,7 @@ const FormHelp = (props) => {
         <Input
           element="input"
           id="productName"
-          label="productName"
+          label="Nombre de producto que dona"
           type="text"
           name="productName"
           onInput={inputHandler}
@@ -217,7 +234,7 @@ const FormHelp = (props) => {
         />
         <Input
           id="description"
-          label="description"
+          label="Descripción del objeto"
           type="textarea"
           name="description"
           onInput={inputHandler}
@@ -228,6 +245,8 @@ const FormHelp = (props) => {
         </Button>
       </Card>
     </Modal>
+  
+      </CSSTransition>
   );
 };
 

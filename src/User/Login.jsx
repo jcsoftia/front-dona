@@ -12,11 +12,12 @@ import {
 import { useForm } from '../Shared/hooks/form-hook';
 import { useHttpClient } from '../Shared/hooks/http-hook';
 import { AuthContext } from '../Shared/Context/auth_context';
+import { CSSTransition } from "react-transition-group";
 import './Login.css';
 
 const Login = () => {
   const auth = useContext(AuthContext);
-  const { isLoading, error, sendRequest, clearError } = useHttpClient();
+  const { isLoading, sendRequest } = useHttpClient();
 
   const [formState, inputHandler] = useForm(
     {
@@ -48,19 +49,26 @@ const Login = () => {
             'Content-Type': 'application/json'
           }
         );
-        console.log(responseData);
         auth.login(responseData._id, responseData.token);
       } catch (e) {
-        console.log(error)
-        console.log(e);
+        // console.log(e);
       }
   };
 
   return (
     <React.Fragment>
+    <CSSTransition
+        in={true}
+        mountOnEnter
+        unmountOnExit
+        appear={true}
+        timeout={800}
+        classNames="fade"
+      >
+
       <Card className="authentication">
         {isLoading && <LoadingSpinner asOverlay />}
-        <h2>Login Required</h2>
+        <h2>Inicio de Sesión</h2>
         <hr />
         <form onSubmit={authSubmitHandler}>
           <Input
@@ -70,7 +78,7 @@ const Login = () => {
             name="dni"
             label="dni"
             validators={[VALIDATOR_MINLENGTH(8),VALIDATOR_MAXLENGTH(11)]}
-            errorText="Please enter your DNI."
+            errorText="Ingrese su DNI"
             onInput={inputHandler}
           />
           <Input
@@ -78,16 +86,18 @@ const Login = () => {
             id="password"
             name="password"
             type="password"
-            label="Cellphone number"
+            label="Número telefónico"
             validators={[VALIDATOR_REQUIRE(),VALIDATOR_MINLENGTH(6),VALIDATOR_MAXLENGTH(11)]}
-            errorText="Please enter your password, its your cellphone number."
+            errorText="Ingrese su contraseña, es su número telefónico"
             onInput={inputHandler}
           />
-          <Button type="submit" disabled={!formState.isValid}>
-            Login
+          <Button type="submit" disabled={!formState.isValid} style={{marginTop:40, width:"95%"}}>
+            Iniciar Sesión
           </Button>
         </form>
       </Card>
+    
+      </CSSTransition>
     </React.Fragment>
   );
 };

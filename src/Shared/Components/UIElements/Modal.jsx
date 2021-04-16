@@ -9,12 +9,24 @@ import "./Modal.css";
 import { useEffect } from "react";
 
 const ModalOverLay = (props) => {
-  const [buttonOn, setButtonOn] = useState("");
-  const [showContent, setShowContent] = useState(true);
-
   const [success, setSuccess] = useState(false);
   const [error, setError] = useState(false);
-
+  
+  useEffect(() => {
+    try {
+      
+      if (props.buttonOn) {
+        props.setButtonOn(false);
+      } else {
+        props.setButtonOn(true);
+      }
+    } catch (error) {
+      
+    }
+    
+    return () => {};
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [props.showButton]);
   useEffect(() => {
     setSuccess(props.success);
     setError(props.error);
@@ -24,48 +36,52 @@ const ModalOverLay = (props) => {
   const content = (
     <div
       className={`modal_container ${props.className} ${
-        buttonOn ? "f-end" : "f-center"
+        props.buttonOn ? "f-end" : "f-center"
       }`}
     >
       <div className={`modal `} style={props.style}>
         <header className={`modal__header ${props.headerClass}`}>
-          <h2>{props.header}</h2>
+          {props.header}
         </header>
         <form
           onSubmit={props.onSubmit ? props.onSubmit : (e) => e.preventDefault()}
         >
           <CSSTransition
-            in={showContent}
+            in={props.showContent}
             timeout={300}
             classNames="content"
-            unmountOnExit
-            onEnter={() => setButtonOn(false)}
-            onExited={() => setButtonOn(true)}
+            onEnter={() => props.setButtonOn(false)}
+            onExited={() => props.setButtonOn(true)}
           >
             <div className={`modal__content ${props.contentClass}`}>
               {props.children}
             </div>
           </CSSTransition>
-          <footer className={`modal__footer ${props.footerClass}`}>
-            {success ? (
-              <span style={{ color: "green" }}>{props.footer}</span>
-            ) : error ? (
-              <span style={{ color: "red" }}>{props.footer}</span>
-            ) : (
-              <span>{`${props.footer || ""}`}</span>
-            )}
-            {props.footerContent}
-            {props.hideButton ? buttonOn ? (
-              <Button size="small" onClick={() => setShowContent(true)}>
-                Up
-              </Button>
-            ) : (
-              <Button size="small" onClick={() => setShowContent(false)}>
-                Down
-              </Button>
-            ):""}
-          </footer>
         </form>
+        <footer className={`modal__footer ${props.footerClass}`}>
+          {success ? (
+            <span style={{ color: "green" }}>{props.footer}</span>
+          ) : error ? (
+            <span style={{ color: "red" }}>{props.footer}</span>
+          ) : (
+            <span>{`${props.footer || ""}`}</span>
+          )}
+          {props.footerContent}
+          {console.log(props.showButton, props.buttonOn)}
+          {props.showButton ? (
+            props.buttonOn ? (
+              <Button size="small" onClick={() => props.setShowContent(true)}>
+                ⬆ Subir
+              </Button>
+            ) : (
+              <Button size="small" onClick={() => props.setShowContent(false)}>
+                ⬇ Bajar
+              </Button>
+            )
+          ) : (
+            props.footerRightMessage
+          )}
+        </footer>
       </div>
     </div>
   );
@@ -73,6 +89,12 @@ const ModalOverLay = (props) => {
 };
 
 const Modal = (props) => {
+  const [showContent, setShowContent] = useState(true);
+  const myProps = {
+    ...props,
+    showContent: showContent,
+    setShowContent: setShowContent,
+  };
   return (
     <>
       {props.backdrop && <Backdrop onClick={props.onCancel || null} />}
@@ -84,7 +106,7 @@ const Modal = (props) => {
         timeout={800}
         classNames="fade"
       >
-        <ModalOverLay {...props} />
+        <ModalOverLay {...myProps} />
       </CSSTransition>
     </>
   );

@@ -11,6 +11,7 @@ import Help from './Help/Help';
 import Login from './User/Login';
 import MainNavigation from './Shared/Components/Navbar/MainNavigation';
 import Donation from './User/Donation';
+import About from './About/About'
 
 import { AuthContext } from './Shared/Context/auth_context';
 import { useAuth } from './Shared/hooks/auth-hook';
@@ -31,6 +32,9 @@ const App = () => {
             <Route path="/help" exact>
               <Help/>
             </Route>
+            <Route path="/about" exact>
+              <About/>
+            </Route>
             <Redirect to="/donation" />
           </Switch>
     );
@@ -43,6 +47,9 @@ const App = () => {
             </Route>
             <Route path="/help" exact>
               <Help/>
+            </Route>
+            <Route path="/about">
+              <About/>
             </Route>
             <Route path="/login">
               <Login/>

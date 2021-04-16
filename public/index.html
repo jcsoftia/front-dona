@@ -2,19 +2,32 @@
 <html lang="es">
   <head>
     <meta charset="utf-8" />
-    <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
+    <link rel="icon" href="%PUBLIC_URL%/logo192.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="theme-color" content="#000000" />
     <meta
       name="description"
-      content="Web site created using create-react-app"
+      content="La aplicacion para compartir lo que ya no usas con el mas necesitado"
     />
     <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
-    
-    <title>React App</title>
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAyJ821gbXvSLBEGuS0W51orqQq5YCZCLo"
+
+    <title>Sonqqo ❤</title>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAyJ821gbXvSLBEGuS0W51orqQq5YCZCLo"></script>
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=UA-149491024-1"
     ></script>
-    <!-- <script src="./Maps.js"></script> -->
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
+
+      gtag("config", "UA-149491024-1");
+    </script>
   </head>
   <body>
     <div id="backdrop-hook"></div>
@@ -23,28 +36,28 @@
     <div id="root"></div>
     <script>
       window.CSS.registerProperty({
-        name: '--primary',
-        syntax: '<color>',
+        name: "--primary",
+        syntax: "<color>",
         inherits: true,
-        initialValue: '#3d5af1',
+        initialValue: "#3d5af1",
       });
       window.CSS.registerProperty({
-        name: '--secondary',
-        syntax: '<color>',
+        name: "--secondary",
+        syntax: "<color>",
         inherits: true,
-        initialValue: '#04befe',
+        initialValue: "#04befe",
       });
       window.CSS.registerProperty({
-        name: '--tertiary',
-        syntax: '<color>',
+        name: "--tertiary",
+        syntax: "<color>",
         inherits: true,
-        initialValue: '#ff0844',
+        initialValue: "#ff0844",
       });
       window.CSS.registerProperty({
-        name: '--quaternary',
-        syntax: '<color>',
+        name: "--quaternary",
+        syntax: "<color>",
         inherits: true,
-        initialValue: '#ffb199',
+        initialValue: "#ffb199",
       });
     </script>
   </body>

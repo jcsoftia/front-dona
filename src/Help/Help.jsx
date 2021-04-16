@@ -17,10 +17,8 @@ const Help = () => {
   const getLocation = () => {
     if (navigator.geolocation) {
       //check if geolocation is available
-      console.log("aqui");
       navigator.geolocation.getCurrentPosition(
         (position) => {
-          console.log("entre");
           setCoordinates({
             lat: position.coords.latitude,
             lng: position.coords.longitude,
@@ -32,7 +30,6 @@ const Help = () => {
         },
         (e) => {
           setCoordinates({ lat: -12.0681, lng: -75.2106 });
-          console.log(e);
           setLoading(false);
           // setError(e);
         }

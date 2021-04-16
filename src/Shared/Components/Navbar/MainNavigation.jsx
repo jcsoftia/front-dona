@@ -17,7 +17,7 @@ const MainNavigation = props => {
   };
   return (
     <>
-      {drawerIsOpen && <Backdrop onClick={closeDrawerHandler} />}
+      {drawerIsOpen && <Backdrop onClick={closeDrawerHandler} zIndex={20}/>}
 
       <SideDrawer show={drawerIsOpen} onClick={closeDrawerHandler}>
         <nav className="main-navigation__drawer-nav">
@@ -34,11 +34,13 @@ const MainNavigation = props => {
           <span />
         </button>
         <h1 className="main-navigation__title">
-          <Link to="/">Dona.pe</Link>
+          <Link to="/">Sonqqo<span className="large"><span className="heart">❤</span></span> <span className="small heart">❤</span></Link>
         </h1>
         <nav className="main-navigation__header-nav">
           <NavLinks />
         </nav>
+        
+      <h2 className="main-navigation__subtitle">Comparte un objeto que no usas, libros viejos, una silla sin uso, unos tapetes que no usas, ropa usada de un bebé. LO QUE SEA QUE YA NO LE DES USO</h2>
       </MainHeader>
     </>
   );

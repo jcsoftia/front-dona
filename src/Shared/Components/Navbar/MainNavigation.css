@@ -1,49 +1,101 @@
 .main-navigation__menu-btn {
-    width: 3rem;
-    height: 3rem;
-    background: transparent;
-    border: none;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-    margin-right: 2rem;
-    cursor: pointer;
-    outline: none;
+  width: 3rem;
+  height: 3rem;
+  background: transparent;
+  border: none;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  margin-right: 2rem;
+  cursor: pointer;
+  outline: none;
+}
+
+.main-navigation__subtitle {
+  text-align: center;
+  display: none;
+  background-color: rgba(211, 211, 211, 0.849);
+  font-size: .8em;
+  margin: 0;
+  /* height: 1.7em; */
+  padding: .5em 1em;
+  color: black;
+  width: 100vw;
+}
+
+.main-navigation__menu-btn span {
+  display: block;
+  width: 3rem;
+  height: 2.5px;
+  background: white;
+}
+
+.main-navigation__title {
+  color: white;
+  justify-self: start;
+  margin: 0.2em;
+}
+
+.main-navigation__title a {
+  text-decoration: none;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.main-navigation__title a span {
+  margin-left: 1rem;
+  font-size: 1rem;
+  text-align: center;
+}
+.main-navigation__title a .large {
+  display: none;
+}
+.main-navigation__title a .small {
+  display: inline-block;
+}
+
+@media (min-width:1024px) {
+  .main-navigation__subtitle {
+
   }
-  
-  .main-navigation__menu-btn span {
-    display: block;
-    width: 3rem;
-    height: 2.5px;
-    background: white;
+  .main-navigation__title a .large {
+    display: inline-block;
   }
-  
-  .main-navigation__title {
-    color: white;
-  }
-  
-  .main-navigation__title a {
-    text-decoration: none;
-    color: white;
-  }
-  
-  .main-navigation__header-nav {
+  .main-navigation__title a .small {
     display: none;
   }
-  
-  .main-navigation__drawer-nav {
-    height: 100%;
-    display: flex;
-    align-items: center;
+}
+.main-navigation__header-nav {
+  display: none;
+}
+.main-navigation__drawer-nav {
+  height: 100%;
+  display: flex;
+  align-items: center;
+}
+
+@media (min-width: 768px) {
+  .main-navigation__subtitle{
+    display: block;
   }
-  
-  @media (min-width: 768px) {
-    .main-navigation__menu-btn {
-      display: none;
-    }
-  
-    .main-navigation__header-nav {
-      display: block;
-    }
+  .main-navigation__menu-btn {
+    display: none;
   }
-  
+
+  .main-navigation__title {
+    margin: 0 .5em;
+  }
+
+  .main-navigation__header-nav {
+    display: block;
+    margin: 0 1em;
+    justify-self: end;
+  }
+}
+
+.main-navigation__title a .heart{
+  font-size: 1.7rem;
+  margin: 0 .51em;
+  color: rgba(255, 227, 227, 0.904);
+}

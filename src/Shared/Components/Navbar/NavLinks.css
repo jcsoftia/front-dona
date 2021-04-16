@@ -16,9 +16,16 @@
   
   .nav-links a {
     border: 1px solid transparent;
-    color: #292929;
+    color: #ffffff;
+    font-weight: bold;
     text-decoration: none;
     padding: 0.5rem;
+    display: inline-block;
+  }
+  @media (min-width:768px){
+    .nav-links a{
+      font-weight: normal;
+    }
   }
   
   .nav-links a:hover,
@@ -35,7 +42,7 @@
     background: transparent;
     padding: 0.5rem;
     border: 1px solid transparent;
-    color: #292929;
+    color: #fff;
     text-decoration: none;
     padding: 0.5rem;
     font: inherit;

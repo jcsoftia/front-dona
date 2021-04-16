@@ -8,7 +8,7 @@ import { AuthContext } from "../Shared/Context/auth_context";
 import { useHttpClient } from "../Shared/hooks/http-hook";
 
 const Donation = (props) => {
-  const { isLoading, error, sendRequest, clearError } = useHttpClient();
+  const { isLoading, sendRequest } = useHttpClient();
   const [loadedDonations, setLoadedDonations] = useState(null)
   const auth = useContext(AuthContext);
   useEffect(() => {
@@ -22,6 +22,7 @@ const Donation = (props) => {
       } catch (err) {}
     };
     getDonations();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const isDonatedHandler = id => {

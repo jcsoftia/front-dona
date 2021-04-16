@@ -20,11 +20,10 @@ class Home extends Component {
       })
       if (this._isMounted === true) {
         const users = await response.json()
-        console.log(users);
         this.setState({ users, loading: false })
       }
     } catch (error) {
-      console.log('my error', error);
+      // console.log('my error', error);
     }
   }
 
